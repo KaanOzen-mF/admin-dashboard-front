@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "@/context/Theme";
 import Navbar from "@/components/navigation/navbar";
+import LeftSideBar from "@/components/navigation/LeftSideBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +32,18 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="system">
           <Navbar />
-          {children}
+          <div className="flex">
+            {/* Left sidebar navigation */}
+            <LeftSideBar />
+
+            {/* Main content area with padding and responsive adjustments */}
+            <section className="flex min-h-screen flex-1 flex-col px-6 pb-6 sm:px-14">
+              {/* Centered container with a maximum width for content */}
+              <div className="mx-auto w-full max-w-5xl">
+                {children} {/* Render the page-specific content here */}
+              </div>
+            </section>
+          </div>
         </ThemeProvider>
       </body>
     </html>
